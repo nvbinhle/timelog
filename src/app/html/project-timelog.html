@@ -1,0 +1,89 @@
+<!--<menu-top></menu-top>-->
+<md-card class="margin-top-20">
+    <h2>Project time [{{user.name}}]</h2>
+</md-card>
+<md-card class="margin-top-20">
+    <md-card-content>
+        <md-card class="margin-top-20" *ngIf="isAdd">
+            <form #addForm="ngForm">
+                <md-card-title>Add</md-card-title>
+                <md-card-subtitle>Add your project working time</md-card-subtitle>
+                <md-card-content>
+                    <p>
+                        Date: {{day}}</p>
+                    <p>
+                        <span>Project</span>
+                        <select [(ngModel)]="prjItem" required name="prjItem">
+                        <option *ngFor="let prj of projects" [value]="prj">{{prj}}</option>
+                    </select>
+                        <!--<span [hidden]="prjItem.valid" style="color: red;">Please enter spent time</span>-->
+                        <md-input [(ngModel)]="prjTimeLogItemAdd.spentTime" placeholder="Spent time" name="spentTime" #spentTime="ngModel" required pattern="(\d{1,2})(.\d{1,2})?"></md-input>
+                        <!--<span [hidden]="spentTime.valid || spentTime.pristine" style="color: red;">Please enter spent time</span>-->
+
+                        <md-input [(ngModel)]="prjTimeLogItemAdd.note" placeholder="Note" value="" name="note">
+                        </md-input>
+                    </p>
+                </md-card-content>
+                <md-card-footer>
+                    <button md-raised-button color="primary" type="button" (click)="onAdd()" [disabled]="!addForm.form.valid">save</button>
+                    <span style="color:red;">{{error}}</span>
+                </md-card-footer>
+            </form>
+        </md-card>
+        <md-card class="margin-top-20" *ngIf="!isAdd">
+            <md-card-title>Please [end your working time] in [Time Logs] menu then you can add your time to a project</md-card-title>
+        </md-card>
+        <md-card class="margin-top-20" *ngIf="isRole">
+            <md-card-title>Search</md-card-title>
+            <md-card-content>
+                <div class="row">
+                    <div class="input-field col">
+                        <select [(ngModel)]="sltName" name="sltName" materialize="material_select" [materializeSelectOptions]="users" required>
+                            <option value="" disabled selected>Choose employee</option>
+                            <option *ngFor="let option of users" [value]="option.name">{{option.name}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col">
+                        <select [(ngModel)]="sltMonth" name="sltMonth" materialize="material_select" [materializeSelectOptions]="defaultMonths" required>
+                            <option value="" disabled selected>Choose month</option>
+                            <option *ngFor="let option of defaultMonths" [value]="option">{{option}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col">
+                        <select [(ngModel)]="sltYear" name="sltYear" materialize="material_select" [materializeSelectOptions]="defaultYears" required>
+                            <option value="" disabled selected>Choose year</option>
+                            <option *ngFor="let option of defaultYears" [value]="option">{{option}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col">
+                        <button md-raised-button color="primary" (click)="onSearch(sltMonth, sltYear, sltName)">Search</button>
+                    </div>
+                </div>
+                <!--<select #sltName>
+                    <option value="">Select</option>
+                    <option *ngFor="let user of users" [value]="user.name">{{user.name}}</option>
+                </select>-->
+                <!--<md-input type="number" #sltMonth placeholder="Month" [value]="defaultMonth" required></md-input>
+                <md-input type="number" #sltYear placeholder="Year" [value]="defaultYear" required></md-input>-->
+                <!--<select #sltMonth>
+                    <option value="">Select month</option>
+                    <option *ngFor="let m of defaultMonths" [value]="m">{{m}}</option>
+                </select>
+                <select #sltYear>
+                    <option *ngFor="let y of defaultYears" [value]="y">{{y}}</option>
+                </select>-->
+                <!--<button md-raised-button color="primary" (click)="onSearch(sltMonth.value, sltYear.value, sltName.value)">Search</button>-->
+            </md-card-content>
+        </md-card>
+        <md-card class="margin-top-20">
+            <md-card-title>Total time in this month : {{totalHours}}</md-card-title>
+            <md-card-content>
+                <md-grid-list cols="5" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="5px">
+                    <md-grid-tile *ngFor="let item of items" style="background-color:green;">
+                        <prj-time-log-update [prjTimeLogItem]="item"></prj-time-log-update>
+                    </md-grid-tile>
+                </md-grid-list>
+            </md-card-content>
+        </md-card>
+    </md-card-content>
+</md-card>

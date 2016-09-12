@@ -1,0 +1,20 @@
+<md-card class="margin-top-20">
+    <h3>Timelog logs [{{viewDate}}]</h3><p><a md-raised-button routerLink="/timelogs" >Go back</a></p>
+</md-card>
+<md-card class="margin-top-20">   
+    <md-list>
+        <md-list-item *ngFor="let item of items" style="height: 100%;">        
+            <h4 md-line> 
+                <!--<button md-raised-button color="primary">
+                    {{item.startTime}} : {{item.endTime}} ==>> {{item.spentTime}}    
+                </button>                -->
+                {{item.startTime}} ==>> {{item.endTime}} : {{item.spentTime}}  
+            </h4>
+            <p md-line>                
+                <span md-line><b>Note:</b> {{item.note}}</span>
+                <span md-line><b>Create:</b> {{item.dateCreate}}</span>
+            </p>
+            <p md-line><a md-raised-button color="primary" href="javascript:;" (click)="onDelete(item)">Delete</a></p>
+        </md-list-item>
+    </md-list>
+</md-card>

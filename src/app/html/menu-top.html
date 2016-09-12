@@ -1,0 +1,31 @@
+<ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf="userName">
+    <li><a [routerLink]="['/add-log']">Home</a></li>
+    <li><a [routerLink]="['/timelogs']">Time logs</a></li>
+    <li><a [routerLink]="['/project-timelog']">Projects time logs</a></li>
+    <li><a [routerLink]="['/projects']" *ngIf="isAdmin">Projects</a></li>
+    <li><a [routerLink]="['/users']" *ngIf="isAdmin">Users</a></li>
+    <li><a (click)="logout()">Log out</a></li>
+</ul>
+<ul materialize="sideNav" class="side-nav" id="mobile-demo" *ngIf="userName">
+    <li><a [routerLink]="['/add-log']">Home</a></li>
+    <li><a [routerLink]="['/timelogs']">Time logs</a></li>
+    <li><a [routerLink]="['/project-timelog']">Projects time logs</a></li>
+    <li><a [routerLink]="['/projects']" *ngIf="isAdmin">Projects</a></li>
+    <li><a [routerLink]="['/users']" *ngIf="isAdmin">Users</a></li>
+    <li><a (click)="logout()">Log out</a></li>
+</ul>
+
+<!--<nav *ngIf="userName">
+    <a md-raised-button color="primary" routerLink="/add-log" routerLinkActive="active">Home</a>
+    <a md-raised-button color="primary" routerLink="/timelogs" routerLinkActive="active">Time logs</a>
+    <a md-raised-button color="primary" routerLink="/project-timelog" routerLinkActive="active">Projects time logs</a>
+    <a md-raised-button color="primary" *ngIf="isAdmin" routerLink="/projects" routerLinkActive="active">Projects</a>
+    <a md-raised-button color="primary" *ngIf="isAdmin" routerLink="/users" routerLinkActive="active">Users</a>
+    <a md-raised-button [md-menu-trigger-for]="menu">
+        <md-icon>more_vert</md-icon>
+    </a>
+    <md-menu x-position="before" y-position="below" #menu="mdMenu">
+        <a routerLink="/users/create/{{userName}}" md-menu-item> My profile </a>
+        <a md-menu-item (click)="logout()">Log out</a>
+    </md-menu>
+</nav>-->

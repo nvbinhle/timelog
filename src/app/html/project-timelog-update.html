@@ -1,0 +1,34 @@
+<md-card *ngIf="isShow">
+    <form  #updateForm="ngForm">
+      <md-card-title>Update [{{prjTimeLogItem.projectName}}]</md-card-title>
+      <md-card-subtitle>{{prjTimeLogItem.date}}
+         <span style="color:red;">{{error}}</span>
+      </md-card-subtitle>
+    <md-card-content>
+      <p>          
+          <md-input [(ngModel)]="prjTimeLogItem.spentTime" placeholder="Spent time" name="spentTime" #spentTime="ngModel" required
+               pattern="(\d{1,2})(.\d{1,2})?" ></md-input>
+          <!--<span [hidden]="spentTime.valid || spentTime.pristine" style="color: red;" >Please enter spent time</span>-->       
+          <md-input [(ngModel)]="prjTimeLogItem.note" placeholder="Note" value="" name="note" ></md-input>
+          </p>
+   </md-card-content>
+    <md-card-footer>
+         <button color="primary" md-raised-button type="button" (click)="onUpdate()" [disabled]="!updateForm.form.valid">save</button>
+        <button md-raised-button type="button" (click)="onCancel()">cancel</button>
+   </md-card-footer>
+   </form>
+</md-card>
+
+<md-card *ngIf="!isShow">
+    <md-card-header>
+        {{prjTimeLogItem.date}}
+    </md-card-header>
+    <md-card-content>
+        <p>{{prjTimeLogItem.projectName}}: {{prjTimeLogItem.spentTime}}</p>
+        <p>{{prjTimeLogItem.note}}</p>
+    </md-card-content>
+    <md-card-actions>
+        <a md-raised-button color="primary" href="javascript:;" (click)="onSelectItem(prjTimeLogItem)">Edit</a>
+        <a md-raised-button href="javascript:;" (click)="onRemoveItem(prjTimeLogItem)">Remove</a>
+    </md-card-actions>
+</md-card>

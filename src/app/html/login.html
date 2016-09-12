@@ -1,0 +1,26 @@
+<md-card class="demo-card">
+    <md-toolbar>Welcome</md-toolbar>
+    <md-card-content>
+        <form>
+            <table cellspacing="0">
+                <tr>
+                    <td>
+                        <md-input placeholder="Username" #userName id="username" type="username"></md-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input placeholder="Password" #password id="password" type="password"></md-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>{{errorMsg}}</span>
+                        <button md-raised-button color="primary" (click)="onLogin(userName.value,password.value)" class="btn waves-effect waves-light" type="button" name="action">Login</button>
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+    </md-card-content>
+</md-card>

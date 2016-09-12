@@ -1,0 +1,19 @@
+<md-list>
+    <md-list-item *ngFor="let item of timelogs">
+        <button disabled  md-raised-button >
+            {{item.startTime}}
+        </button> 
+        <button disabled md-raised-button>
+            {{item.endTime}}
+        </button>
+        <button color="primary" md-fab >
+            {{item.spentTime}}
+        </button>
+    </md-list-item>
+</md-list>
+  
+<!--<div style="width:100%; height: 5px;border:1px solid ;">
+    <div *ngFor= "let chart of charts" [ngStyle]="{'margin-left':'chart.start','width':'chart.end','background-color': 'chart.color','color': 'white', 'height': '5px';'border': '1px solid'}">
+        <span style="float:left;">{{chart.startTime}}</span><span>{{chart.desc}}</span><span style="float:right;">{{chart.endTime}}</span>
+    </div>
+</div>-->

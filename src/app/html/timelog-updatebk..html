@@ -1,0 +1,50 @@
+<md-card *ngIf="isShow">
+    <form #updateForm="ngForm">
+        <div>
+            <md-card-content>
+                <p><b>Start time:</b>
+                    <md-input [(ngModel)]="timeLogItem.startTime" required name="startTime" #startTime="ngModel" pattern="(\d{1,2})(:\d{1,2})?(:\d{1,2})?((\s)(AM|PM))?"></md-input>
+                </p>
+
+                <p><b>End time:</b>
+                    <md-input [(ngModel)]="timeLogItem.endTime" required name="endTime" #endTime="ngModel" pattern="(\d{1,2})(:\d{1,2})?(:\d{1,2})?((\s)(AM|PM))?"></md-input>
+                </p>
+
+                <p><b>Note:</b>
+                    <md-input [(ngModel)]="timeLogItem.note" value="" name="note"></md-input>
+                </p>
+            </md-card-content>
+        </div>
+        <md-grid-tile-header>
+            <h3>{{timeLogItem.date}}</h3>
+        </md-grid-tile-header>
+        <md-grid-tile-footer>
+            <md-card-actions>
+                <button md-raised-button color="primary" type="button" (click)="onUpdate()" [disabled]="!updateForm.form.valid">save</button>
+                <button md-raised-button type="button" style="color:black;" (click)="onCancel()">Cancel</button>
+
+            </md-card-actions>
+        </md-grid-tile-footer>
+    </form>
+</md-card>
+
+<md-card *ngIf="!isShow" flex class="md-card">
+    <div>
+        <md-card-content>
+            <p><b>Start Time:</b> {{timeLogItem.startTime}}</p>
+            <p><b>End Time:</b> {{timeLogItem.endTime}}</p>
+            <p><b>Note:</b> {{timeLogItem.note}}</p>
+            <p><b>Spent Time:</b> {{timeLogItem.spentTime}}</p>
+        </md-card-content>
+
+    </div>
+    <md-grid-tile-header>
+        <h3>{{timeLogItem.date}}</h3>
+    </md-grid-tile-header>
+    <md-grid-tile-footer>
+        <md-card-actions>
+            <a md-raised-button color="primary" href="javascript:;" (click)="onSelectItem(timeLogItem)">Edit</a>
+            <a md-raised-button color="primary" href="javascript:;" (click)="onShowLogs(timeLogItem)">Logs</a>
+        </md-card-actions>
+    </md-grid-tile-footer>
+</md-card>

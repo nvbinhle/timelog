@@ -1,0 +1,75 @@
+md-grid-tile {
+    font-size: 1.6em;
+    vertical-align: top;
+    text-align: left;
+}
+
+
+/*select {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 0 8px;
+    height: 40px;
+    line-height: 3;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    outline: none;
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: medium;
+    font-size: 16px;
+    vertical-align: top;
+    -webkit-transition: border 0.56s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border 0.56s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+select:focus {
+    border-bottom: 2px solid #009688;
+}
+
+select.block {
+    width: 100%;
+}
+
+select.wicon {
+    width: 292px;
+}
+
+select {
+    width: auto;
+    margin-left: 8px;
+}
+
+.selection {
+    display: inline-block;
+    position: absolute;
+    padding: 8px 0;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.24);
+    overflow: hidden;
+    opacity: 0;
+    z-index: 300;
+}
+
+.selection a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 16px 20px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.selection a:active {
+    background: #eee;
+}*/
+
+md-card {
+    position: unset;
+}
+
+md-grid-tile md-grid-tile-footer {
+    color: unset;
+}

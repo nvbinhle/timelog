@@ -1,0 +1,1 @@
+export const STATUSES_DATA: string[] = ['on', 'off'];

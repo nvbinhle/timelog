@@ -1,0 +1,13 @@
+<!--<menu-top></menu-top>-->
+<md-card class="magin-top-20 card-40-center">
+    <md-card-title>
+        <h3>Start your working time [{{user.name}}]</h3  >   
+    </md-card-title>
+    <md-card-content >
+        <button color="primary" [disabled]="itemOnDay.endTime==defaultEndTime" md-fab (click)="onStart()" style="width:200px;height:200px;font-size: 22px;" >Start working</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button md-raised-button style="width:200px;;height:100px;font-size: 30px;font-weight: 500;">{{clock}}</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button color="primary" md-fab (click)="onEnd()" [disabled]="itemOnDay.endTime!=defaultEndTime" style="width:200px;;height:200px;font-size: 22px;">End working</button>        
+    </md-card-content>
+</md-card>

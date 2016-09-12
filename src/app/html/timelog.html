@@ -1,0 +1,70 @@
+<!--<menu-top>
+</menu-top>-->
+<md-card>
+    <h2>Working time [{{user.name}}]</h2>
+</md-card>
+<br />
+<button md-raised-button color="primary" *ngIf="itemOnDay.endTime==defaultEndTime" (click)="onEndWorkingToday()">End working today</button> <br /><br />
+<br />
+<div style="margin: 20px 0" *ngIf="isRole">
+
+    <h3>Search</h3>
+
+    <select #sltName>
+        <option [value]="" disabled selected>Select</option>
+        <option *ngFor="let user of users" [value]="user.name">{{user.name}}</option>
+    </select>
+    <select #sltMonth>
+        <option [value]="">Select month</option>
+        <option *ngFor="let m of defaultMonths" [value]="m">{{m}}</option>
+    </select>
+    <select #sltYear>
+        <option *ngFor="let y of defaultYears" [value]="y">{{y}}</option>
+    </select>
+    <button md-raised-button color="primary" (click)="onSearch(sltMonth.value, sltYear.value, sltName.value)">Search</button>
+
+</div>
+
+<md-card>
+    <md-card-title>Time Log: Total of month {{totalHours}}</md-card-title>
+    <md-grid-list cols="5" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="5px">
+        <md-grid-tile *ngFor="let item of items " style="background-color:green;">
+            <timelog-update [timeLogItem]="item"></timelog-update>
+        </md-grid-tile>
+    </md-grid-list>
+</md-card>
+
+
+
+
+<!--<md-data-table layout-fill>
+    <thead>
+        <tr md-data-table-header-selectable-row>
+            <th>Date</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Note</th>
+            <th>Total</th>
+            <th>Function</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items">
+            <td>{{item.date}}</td>
+            <td>{{item.startTime}}</td>
+            <td>{{item.endTime}}</td>
+            <td>{{item.note}}</td>
+            <td>{{item.spentTime}}</td>
+            <td><a href="javascript:;" (click)="selectItem(item)">Edit</a></td>
+        </tr>
+        <tr>
+            <td>Total of month</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{totalHours}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</md-data-table>
+-->

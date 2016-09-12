@@ -1,0 +1,27 @@
+<!--<md-toolbar color="primary">
+    <span><h1>{{title}}</h1></span>
+
+
+    <span class="example-fill-remaining-space"></span>
+
+    <span>
+         <menu-top></menu-top>
+
+    </span>
+</md-toolbar>
+
+<main>
+    <router-outlet></router-outlet>
+</main>-->
+
+<nav>
+    <div class="nav-wrapper teal">
+        <!--<a class="hide-on-med-and-down" [routerLink]="['/']"><img src="http://nvg.vn/fileadmin/template/main/images/logo_nhatviet.jpg"></a>-->
+        <a [routerLink]="['/']" class="brand-logo" style="margin-left:1%">{{title}}</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse" materialize="sideNav"><i class="material-icons">menu</i></a>
+        <menu-top></menu-top>
+    </div>
+</nav>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

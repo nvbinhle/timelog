@@ -1,0 +1,92 @@
+<!--<menu-top></menu-top>-->
+<md-card>
+    Working time [{{user.name}}]
+</md-card>
+
+
+<md-card class="margin-top-20">
+    <md-card-content>
+        <md-card *ngIf="isRole" class="margin-top-20">
+            <md-card-title>Search</md-card-title>
+            <md-card-content>
+                <div class="row">
+                    <!--<select #sltName required>
+                    <option [value]="" disabled selected>Select</option>
+                    <option *ngFor="let user of users" [value]="user.name">{{user.name}}</option>
+                </select>-->
+                    <div class="input-field col">
+                        <select [(ngModel)]="sltName" name="sltName" materialize="material_select" [materializeSelectOptions]="users" required>
+                            <option value="" disabled selected>Choose employee</option>
+                            <option *ngFor="let option of users" [value]="option.name">{{option.name}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col">
+                        <!--<md-input type="number" #sltMonth placeholder="Month" [value]="defaultMonth" required></md-input>-->
+                        <select [(ngModel)]="sltMonth" name="sltMonth" materialize="material_select" [materializeSelectOptions]="defaultMonths" required>
+                            <option value="" disabled selected>Choose month</option>
+                            <option *ngFor="let option of defaultMonths" [value]="option">{{option}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col">
+                        <!--<md-input type="number" #sltYear placeholder="Year" [value]="defaultYear" required></md-input>-->
+                        <select [(ngModel)]="sltYear" name="sltYear" materialize="material_select" [materializeSelectOptions]="defaultYears" required>
+                            <option value="" disabled selected>Choose year</option>
+                            <option *ngFor="let option of defaultYears" [value]="option">{{option}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col">
+                        <button md-raised-button color="primary" (click)="getData(sltMonth, sltYear, sltName)">Search</button>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+
+
+        <md-card class="margin-top-20">
+            <md-card-title>Time Log: Total of month {{totalHours}}</md-card-title>
+            <md-card-content>
+                                
+                <md-grid-list cols="5" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="5px">
+                    <md-grid-tile *ngFor="let item of items " style="background-color:green;">
+                        <md-card>
+                            <md-card-title>{{item.date}}</md-card-title>
+                            <md-card-content>
+                             <p md-line>
+                                <span><b>Spent Time:</b> {{item.totalTime}}</span>
+                            </p>
+                            <p>
+                                <span *ngFor="let child of item.timelogs">
+                                    {{child.startTime}}=>{{child.endTime}} : {{child.spentTime}} <br>
+                                </span>
+                            </p>
+                            <!--<p>
+                            <timelog-chart [timelogs]="item.timelogs"></timelog-chart>
+                        </p>-->
+                            </md-card-content>
+                            <md-card-actions>
+                                <a md-raised-button color="primary" href="javascript:;" (click)="onSelectItem(item)">Edit</a>
+                                <a md-raised-button color="primary" href="javascript:;" (click)="onShowLogs(item)">View Logs</a>
+                            </md-card-actions>                                                                            
+                        </md-card>                        
+                    </md-grid-tile>
+                </md-grid-list>
+            
+                <!--<md-list>
+                    <md-list-item *ngFor="let item of items " style="height: 200px;">
+                        <h4 md-line>{{item.date}}</h4>
+                        <p md-line>
+                            <span><b>Spent Time:</b> {{item.totalTime}}</span>
+                        </p>
+                        <p>
+                            <timelog-chart [timelogs]="item.timelogs"></timelog-chart>
+                        </p>
+                        <p md-line>
+                            <a md-raised-button color="primary" href="javascript:;" (click)="onSelectItem(item)">Edit</a>
+                            <a md-raised-button color="primary" href="javascript:;" (click)="onShowLogs(item)">View Logs</a>
+                        </p>
+                    </md-list-item>
+                </md-list>-->
+            </md-card-content>
+        </md-card>
+    </md-card-content>
+</md-card>

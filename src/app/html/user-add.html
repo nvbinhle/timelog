@@ -1,0 +1,77 @@
+<!--<menu-top></menu-top>-->
+<md-card>
+    <md-toolbar>
+        <h3 *ngIf="isAdd">New user</h3>
+        <h3 *ngIf="!isAdd">Edit user</h3>
+    </md-toolbar>
+</md-card>
+
+<md-card class="margin-top-20">
+    <form #userForm="ngForm">
+        <md-card-content>
+            <md-card class="margin-top-20">
+                <md-card-title> Basic information</md-card-title>
+                <md-card-content>
+                    <md-input [disabled]="!isAdd" [(ngModel)]="item.name" pattern="[a-zA-Z0-9]+" name="name" #name="ngModel" required>
+                        <md-placeholder>
+                            User name
+                        </md-placeholder>
+                        <md-hint>contains a-zA-Z0-9</md-hint>
+                    </md-input>
+                    <span style="color:red;" *ngIf="errorMes">{{errorMes}}</span>
+                    <md-input [(ngModel)]="item.password" placeholder="Password" type="password" name="password" required></md-input>
+                    <md-input *ngIf="isAdd" [(ngModel)]="item.ip" placeholder="IP" name="ip"></md-input>
+                    <md-input [(ngModel)]="item.email" name="email" placeholder="Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                        <!--<md-placeholder>
+                                <md-icon>email</md-icon>
+                                Email</md-placeholder>-->
+                        <md-hint>Eg: yourname@gmail.com</md-hint>
+                    </md-input>
+                    <md-input [(ngModel)]="item.phone" placeholder="Phone" name="phone">
+                    </md-input>
+                    <md-input *ngIf="isAdd" [(ngModel)]="item.note" style="width: 50%;" name="note" placeholder="Note"></md-input>
+                </md-card-content>
+            </md-card>
+            <md-card class="margin-top-20" *ngIf="isAdd">
+                <md-card-title> Status</md-card-title>
+                <md-card-content>
+                    <md-slide-toggle color="primary" [checked]="item.status=='on'" (change)="onChangeStatus($event)">
+                        {{item.status}}
+                    </md-slide-toggle>
+                </md-card-content>
+            </md-card>
+            <md-card class="margin-top-20" *ngIf="isAdd">
+                <md-card-title>Roles</md-card-title>
+                <md-card-content>
+                    <md-radio-group [(ngModel)]="item.role" name="role">
+                        <md-radio-button *ngFor="let role of roles" [value]="role" class="margin-right-10">
+                            {{role}}
+                        </md-radio-button>
+                    </md-radio-group>
+                </md-card-content>
+            </md-card>
+            <md-card class="margin-top-20" *ngIf="isAdd">
+                <md-card-title>Projects</md-card-title>
+                <md-card-content>
+                    <md-checkbox *ngFor="let prj of projects" [checked]="projectCheckeds.indexOf(prj.name)!=-1" (change)="updateChecked(prj.name, $event)" class="margin-right-10">
+                        {{prj.name}}
+                    </md-checkbox>
+                </md-card-content>
+            </md-card>
+            <md-card class="margin-top-20" *ngIf="isAdd">
+                <md-card-title> User groups</md-card-title>
+                <md-card-content>
+                    <md-checkbox *ngFor="let ur of userGroups" [checked]="userGroupCheckeds.indexOf(ur)!=-1" (change)="updateUgChecked(ur, $event)" class="margin-right-10">
+                        {{ur}}
+                    </md-checkbox>
+                </md-card-content>
+            </md-card>
+
+        </md-card-content>
+        <md-footer>
+            <button md-raised-button color="primary" type="button" (click)="onUpdate()" [disabled]="!userForm.form.valid">Save</button>
+            <a md-raised-button routerLink="/users" routerLinkActive="active">Cancel</a>
+            <label *ngIf="flagSuccess" style="background-color: darkgreen; color: white;">Success</label>
+        </md-footer>
+    </form>
+</md-card>

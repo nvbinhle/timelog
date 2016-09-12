@@ -1,0 +1,40 @@
+<md-card>
+    <form #prjForm="ngForm" (ngSubmit)="onUpdate()">
+        <md-card-title>New project</md-card-title>                
+        <md-card-content>
+            <md-card class="margin-top-20">
+                <md-card-title> Basic information</md-card-title>
+                <md-card-content>
+                    <md-input [(ngModel)]="item.name" pattern="[a-zA-Z0-9]+" name="name" #name="ngModel" required>
+                        <md-placeholder>Project name</md-placeholder>
+                        <md-hint>only contains a-zA-Z0-9</md-hint>
+                    </md-input>                            
+                    <md-input [(ngModel)]="item.note" placeholder="Note" name="note" #note="ngModel"></md-input>
+                </md-card-content>
+            </md-card>                    
+            <md-card class="margin-top-20">
+                <md-card-title> Status</md-card-title>
+                <md-card-content>
+                    <md-slide-toggle color="primary" [checked]="item.status=='on'" (change)="onChangeStatus($event)">
+                    {{item.status}}
+                </md-slide-toggle>
+                </md-card-content>
+            </md-card>
+            <md-card class="margin-top-20">
+                <md-card-title>Tribes</md-card-title>
+                <md-card-content>
+                    <md-radio-group [(ngModel)]="item.tribesId" name="tribesId">
+                        <md-radio-button *ngFor="let trb of tribes" [value]="trb">
+                            {{trb}}
+                        </md-radio-button>
+                    </md-radio-group>
+                </md-card-content>
+            </md-card>                    
+        </md-card-content>
+        <md-footer>
+            <button md-raised-button color="primary" type="submit" [disabled]="!prjForm.form.valid">Save</button>
+             <a md-raised-button routerLink="/projects" routerLinkActive="active">Cancel</a>
+            <label *ngIf="flagSuccess" style="background-color: darkgreen; color: white;">Success</label>                    
+        </md-footer>
+    </form>
+</md-card>

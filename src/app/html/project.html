@@ -1,0 +1,18 @@
+<!--<menu-top></menu-top>-->
+ <md-card>
+    <md-card-title>List projects</md-card-title>
+    <md-card-content>
+        <md-grid-list cols="5" [style.background]="'white'">
+            <md-grid-tile>
+                <md-card>
+                    <md-card-content>
+                        <a md-raised-button color="primary" routerLink="/projects/create" routerLinkActive="active">Create new</a>
+                    </md-card-content>
+                </md-card>                
+            </md-grid-tile>
+            <md-grid-tile *ngFor="let item of items">
+                <project-update-tpl [item]="item" [tribes]="tribes"></project-update-tpl>
+            </md-grid-tile>
+        </md-grid-list>
+    </md-card-content>            
+</md-card>

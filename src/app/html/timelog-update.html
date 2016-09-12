@@ -1,0 +1,37 @@
+ <form #updateForm="ngForm">
+    <md-card class="margin-top-20">
+        <md-card-header>Add timelog on [{{viewDate}}]</md-card-header>
+        <md-card-content>
+            <p md-line>
+                <md-input [(ngModel)]="newItem.startTime" placeholder="Start time" required name="startTime" #startTime="ngModel" pattern="(\d{1,2})(:\d{1,2})?(:\d{1,2})?((\s)(AM|PM))?">
+                    <md-hint>hh:MM</md-hint>
+                </md-input>
+                <md-input placeholder="End time" [(ngModel)]="newItem.endTime" required name="endTime" #endTime="ngModel" pattern="(\d{1,2})(:\d{1,2})?(:\d{1,2})?((\s)(AM|PM))?">
+                    <md-hint>hh:MM</md-hint>                    
+                </md-input>
+            </p>
+            <p md-line>
+                <md-input [(ngModel)]="newItem.note" value="" name="note" placeholder="Note" style="width: 37%;"></md-input>
+            </p>
+        </md-card-content>
+        <md-car-actions>
+            <button md-raised-button color="primary" type="button" (click)="onAddItem()" [disabled]="!updateForm.form.valid">Save</button>
+                <button md-raised-button type="button" (click)="onCancelItem()">Clear</button>
+                <a md-raised-button routerLink="/timelogs" routerLinkActive="active">Back</a>
+        </md-car-actions>
+    </md-card>
+ </form>
+<md-card class="margin-top-20">
+    <md-card-content>
+            <md-list>
+                <md-list-item *ngFor="let timeLogItem of items ">                      
+                    <p md-line>{{timeLogItem.startTime}} ==>> {{timeLogItem.endTime}} : 
+                        <button md-fab color="accent">{{timeLogItem.spentTime}}</button>
+                    </p>                        
+                    <p md-line><b>Note:</b> {{timeLogItem.note}}</p>                        
+                    <p md-line>                            
+                        <a md-raised-button color="primary" href="javascript:;" (click)="onDeleteItem(timeLogItem.$key)">Delete</a></p>
+                </md-list-item>
+            </md-list>
+    </md-card-content>
+</md-card>
